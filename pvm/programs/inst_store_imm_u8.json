@@ -1,5 +1,5 @@
 {
-  "name": "inst_store_u8_trap_read_only",
+  "name": "inst_store_imm_u8",
   "initial-regs": [
     0,
     0,
@@ -8,7 +8,7 @@
     0,
     0,
     0,
-    305419896,
+    0,
     0,
     0,
     0,
@@ -18,9 +18,9 @@
   "initial-pc": 0,
   "initial-page-map": [
     {
-      "address": 65536,
+      "address": 131072,
       "length": 4096,
-      "is-writable": false
+      "is-writable": true
     }
   ],
   "initial-memory": [],
@@ -28,13 +28,14 @@
   "program": [
     0,
     0,
-    5,
-    71,
-    7,
+    6,
+    62,
+    3,
     0,
     0,
-    1,
-    225
+    2,
+    18,
+    1
   ],
   "expected-status": "trap",
   "expected-regs": [
@@ -45,14 +46,21 @@
     0,
     0,
     0,
-    305419896,
+    0,
     0,
     0,
     0,
     0,
     0
   ],
-  "expected-pc": 0,
-  "expected-memory": [],
+  "expected-pc": 6,
+  "expected-memory": [
+    {
+      "address": 131072,
+      "contents": [
+        18
+      ]
+    }
+  ],
   "expected-gas": 9998
 }
