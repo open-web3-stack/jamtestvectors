@@ -51,10 +51,16 @@ State ::= SEQUENCE {
     -- [δ] Relevant services account data. Refer to T(σ) in GP Appendix D.
     accounts SEQUENCE OF AccountsMapEntry,
 
-    -- Cores statistics.
+	-- [π_C] Cores statistics.
+	-- Note: Only stats related to reports STF are updated, in particular:
+	-- imports (i), exports (e), extrinsic_size (z), extrinsic_count (x),
+	-- bundle_size (b), gas_used (u).
     cores-statistics CoresStatistics,
 
-    -- Services statistics.
+	-- [π_S] Services statistics.
+	-- Note: Only stats related to reports STF are updated, in particular:
+	-- refinement_count (r.0), refinement_gas_used (r.1), imports (i),
+	-- exports (x), extrinsic_size (z), extrinsic_count (x).
     services-statistics ServicesStatistics
 }
 
@@ -63,7 +69,12 @@ Input ::= SEQUENCE {
     guarantees GuaranteesExtrinsic,
 
     -- [H_t] Block's timeslot.
-    slot TimeSlot
+    slot TimeSlot,
+
+    -- This is a derived sequence of all known packages
+    -- The set is constructed from all the recently reported WPs using recent_blocks (β),
+    -- accumulated reports (ξ), availability (ρ), and ready queue (φ).
+    known-packages SEQUENCE OF WorkPackageHash
 }
 
 ReportedPackage ::= SEQUENCE {
