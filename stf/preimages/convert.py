@@ -11,5 +11,4 @@ from bin_to_json import convert_group # noqa: E402
 
 os.chdir(script_dir)
 
-for spec in ["tiny", "full"]:
-    convert_group("preimages", spec, PreimagesTestVector)
+convert_group("preimages", "data", PreimagesTestVector)

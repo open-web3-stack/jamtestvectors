@@ -76,30 +76,24 @@ def path_to_type_name(path):
     return name
 
 
-def validate(schema, json_file, root_type = None, json_tweaks_callback = None):
+def validate(schema, json_file, json_tweaks_callback=None):
     """Validate a JSON file against an ASN.1 schema.
     
-    Args:
-        schema: Compiled ASN.1 schema
-        json_file: Path to JSON file to validate
-        root_type_name: Optional schema type name to be used to parse the json_file
-        json_tweaks_callback: Optional callback to modify JSON before validation
-
-    If the `root_type_name` arg is None or is not present in the schema, then the root
-    type for decoding is determined as follows:
+    The root type for decoding is determined as follows:
     - If the schema contains "TestCase", use that type
     - Otherwise, derive the type from the filename (e.g., "my_type.json" → "MyType")
 
+    Args:
+        schema: Compiled ASN.1 schema
+        json_file: Path to JSON file to validate
+        json_tweaks_callback: Optional callback to modify JSON before validation
     """
-    print("* Validating:", json_file)
-
     # Determine root type used for decoding
-    if root_type is None:
-        if "TestCase" in schema.types:
-            root_type = "TestCase"
-        else:
-            # Auto-detect root type from filename
-            root_type = path_to_type_name(json_file)
+    if "TestCase" in schema.types:
+        root_type = "TestCase"
+    else:
+        # Auto-detect root type from filename
+        root_type = path_to_type_name(json_file)
 
     # Read and prepare JSON
     with open(json_file, "rb") as f:
@@ -127,7 +121,7 @@ def validate_group(group_name, group_schema, spec_name, json_tweaks_callback=Non
     Args:
         group_name: Name of the validation group (for display)
         group_schema: ASN.1 schema file name (or None for base schema only)
-        spec_name: Specification name ("tiny", "full")
+        spec_name: Specification name ("tiny", "full", or "data")
         json_tweaks_callback: Optional callback to modify JSON before validation
     """
     print(f"\n[Validating {group_name} ({spec_name})]")
@@ -140,4 +134,5 @@ def validate_group(group_name, group_schema, spec_name, json_tweaks_callback=Non
     # Compile schema and validate all JSON files
     schema = asn1tools.compile_files(schema_files, codec="jer")
     for json_file in glob.glob(f"{spec_name}/*.json"):
-        validate(schema, json_file, None, json_tweaks_callback)
+        print("* Validating:", json_file)
+        validate(schema, json_file, json_tweaks_callback)
