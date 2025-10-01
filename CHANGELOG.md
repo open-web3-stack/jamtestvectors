@@ -1,3 +1,14 @@
+## [0.7.1] - Unreleased
+
+### Changed
+
+* Remove `on_transfer` from service statistics
+  (GP [#457](https://github.com/gavofyork/graypaper/pull/457))
+
+* Add preimage provision status to the `Account`s structure of
+  accumulate `StfState` (see ASN.1 syntax).
+
+
 ## [0.7.0] - 26-08-2025
 
 ### Changed

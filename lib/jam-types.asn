@@ -511,11 +511,7 @@ ServiceActivityRecord ::= SEQUENCE {
     -- Number of work-items accumulated
     accumulate-count      U32,
     -- Amount of gas used for accumulation
-    accumulate-gas-used   Gas,
-    -- Number of processed transfers
-    on-transfers-count    U32,
-    -- Amount of gas used for processing transfers
-    on-transfers-gas-used Gas
+    accumulate-gas-used   Gas
 }
 
 -- Map entry for service statistics
