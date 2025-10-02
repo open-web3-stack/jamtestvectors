@@ -135,6 +135,8 @@ ServiceId ::= U32
 
 -- Information about a deployed service
 ServiceInfo ::= SEQUENCE {
+    -- Service information version
+    version        U8,
     -- Hash of the service's code
     code-hash      OpaqueHash,
     -- Current balance of the service
