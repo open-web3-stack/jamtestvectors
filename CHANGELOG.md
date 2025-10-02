@@ -2,6 +2,8 @@
 
 ### Changed
 
+*  Serialization: Include version byte prefix for accounts
+   (GP: [#472](https://github.com/gavofyork/graypaper/pull/472))
 
 ## [0.7.0] - 26-08-2025
 
