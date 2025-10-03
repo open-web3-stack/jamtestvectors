@@ -761,6 +761,8 @@ Privileges ::= SEQUENCE {
     assign SEQUENCE (SIZE(core-count)) OF ServiceId,
     -- Service ID with designation privileges
     designate ServiceId,
+    -- Service ID with registrar privileges
+    register ServiceId,
     -- Services that are always accumulated
     always-acc SEQUENCE OF AlwaysAccumulateMapEntry
 }
