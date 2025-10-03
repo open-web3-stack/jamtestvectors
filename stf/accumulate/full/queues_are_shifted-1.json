@@ -2317,6 +2317,7 @@
                 0
             ],
             "designate": 0,
+            "register": 0,
             "always_acc": []
         },
         "statistics": [],
@@ -4624,6 +4625,7 @@
                 0
             ],
             "designate": 0,
+            "register": 0,
             "always_acc": []
         },
         "statistics": [
