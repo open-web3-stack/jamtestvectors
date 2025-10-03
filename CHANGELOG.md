@@ -2,8 +2,10 @@
 
 ### Changed
 
-*  Serialization: Include version byte prefix for accounts
-   (GP: [#472](https://github.com/gavofyork/graypaper/pull/472))
+* Serialization: Include version byte prefix for accounts
+  (GP [#472](https://github.com/gavofyork/graypaper/pull/472))
+* Registrar service privilege
+  (GP [#473](https://github.com/gavofyork/graypaper/pull/473))
 
 ## [0.7.0] - 26-08-2025
 
