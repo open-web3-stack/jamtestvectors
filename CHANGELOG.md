@@ -4,9 +4,10 @@
 
 * Remove `on_transfer` from service statistics
   (GP [#457](https://github.com/gavofyork/graypaper/pull/457))
-
 * Add preimage provision status to the `Account`s structure of
   accumulate `StfState` (see ASN.1 syntax).
+* Serialization: Include version byte prefix for accounts
+  (GP: [#472](https://github.com/gavofyork/graypaper/pull/472))
 
 ## [0.7.0] - 26-08-2025
 
