@@ -25,7 +25,7 @@ PreimagesStatusMapEntry ::= SEQUENCE {
     -- Preimage blob full hash
     hash OpaqueHash,
     -- Preimage request status
-    status SEQUENCE OF TimeSlot
+    status SEQUENCE (SIZE(0..3)) OF TimeSlot
 }
 
 -- Service account information relevant for this STF.
