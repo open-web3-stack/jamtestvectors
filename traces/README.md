@@ -32,7 +32,8 @@ All host calls have a gas cost of **$10$**, with the following exceptions:
 - [Storage](./storage): no-safrole, service storage related work reports.
 - [Preimages](./preimages): no-safrole, preimages related work reports.
 - [Storage Light](./storage_light): no-safrole, service related work reports.
-- [Preimages LIght](./preimages_light): no-safrole, preimages related work reports.
+- [Preimages Light](./preimages_light): no-safrole, preimages related work reports.
+- [Fuzzy](./fuzzy): no-safrole, fuzzy service, empty fuzzy profile.
 
 Traces with work reports come in two variants: standard versions containing up
 to 6 work items per report, and lightweight versions limited to a single work
