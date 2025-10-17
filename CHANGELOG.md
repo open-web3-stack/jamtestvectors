@@ -1,9 +1,24 @@
-## [0.7.0] - Unreleased
+## [0.7.1] - 08-10-2025
+
+### Changed
+
+* Remove `on_transfer` from service statistics
+  (GP [#457](https://github.com/gavofyork/graypaper/pull/457))
+* Serialization: Include version byte prefix for accounts
+  (GP [#472](https://github.com/gavofyork/graypaper/pull/472))
+* Registrar service privilege
+  (GP [#473](https://github.com/gavofyork/graypaper/pull/473))
+* Add preimage provision status to the `Account`s structure of
+  accumulate `StfState` (see ASN.1 syntax).
+
+## [0.7.0] - 26-08-2025
 
 ### Changed
 
 * Serialization: Move all variable-length items to end of encoding
   (GP [#418](https://github.com/gavofyork/graypaper/pull/418))
+* Rearrange the items in `CoreActivityRecord` and `ServiceActivityRecord`,
+  refer to the ASN.1 schema and GP (no explicit GP PR).
 
 ## [0.6.7] - 07-08-2025
 

@@ -101,6 +101,15 @@ All host calls have a gas cost of **$10$**, with the following exceptions:
   - One accumulated. Ready queue items dependencies are edited.
 - [ready_queue_editing-3](./tiny/ready_queue_editing-3.json)
   - One report unlocks reports in the ready-queue.
+- [transfer_for_ejected_service-1](./tiny/transfer_for_ejected_service-1.json)
+	- A transfer is made to a service that gets ejected in the same round.
+- [work_for_ejected_service-1](./tiny/work_for_ejected_service-1.json)
+  - A work report X with with unsatisfied dependency Y is queued.
+- [work_for_ejected_service-2](./tiny/work_for_ejected_service-2.json)
+  - A work report Z ejects the service account targeted by work report X
+- [work_for_ejected_service-3](./tiny/work_for_ejected_service-3.json)
+  - Work report Y is executed and unlocks work report X.
+  - Work report X is not actually executed because account can't be loaded.
 
 ## Full Vectors
 

@@ -24,7 +24,7 @@ Both the binary and json formats adhere to the overarching JAM protocol ASN.1
   - One assurance targets a core without any assigned work report.
 - [assurance_with_bad_attestation_parent-1](tiny/assurance_with_bad_attestation_parent-1.json)🔴
   - One assurance has a bad attestation parent hash.
-- [assurances_for_stale_report-1](tiny/assurances_for_stale_report-1.json)🔴
+- [assurances_for_stale_report-1](tiny/assurances_for_stale_report-1.json)🟢
   - One assurance targets a core with a stale report.
   - We are lenient on the stale report as far as it is available.
 - [assurers_not_sorted_or_unique-1](tiny/assurers_not_sorted_or_unique-1.json)🔴

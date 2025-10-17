@@ -21,6 +21,13 @@ PreimagesMapEntry ::= SEQUENCE {
     blob ByteSequence
 }
 
+PreimagesStatusMapEntry ::= SEQUENCE {
+    -- Preimage blob full hash
+    hash OpaqueHash,
+    -- Preimage request status
+    status SEQUENCE (SIZE(0..3)) OF TimeSlot
+}
+
 -- Service account information relevant for this STF.
 Account ::= SEQUENCE {
     -- [a_c, a_b, a_g, a_m, a_o, a_i] Service metadata.
@@ -28,9 +35,9 @@ Account ::= SEQUENCE {
     -- [a_s] Service storage.
     storage SEQUENCE OF StorageMapEntry,
     -- [a_p] Preimages blobs.
-    -- This is mostly provided to lookup code blob for accumulate procedure execution.
-    -- It is not supposed to be altered by this STF (i.e. posterior matches prior).
-    preimages SEQUENCE OF PreimagesMapEntry
+    preimages-blob SEQUENCE OF PreimagesMapEntry,
+    -- [a_l] Preimages status.
+    preimages-status SEQUENCE OF PreimagesStatusMapEntry
 }
 
 AccountsMapEntry ::= SEQUENCE {

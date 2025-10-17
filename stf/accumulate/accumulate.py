@@ -28,11 +28,18 @@ class AccumulatePreimagesMapEntry(Struct):
         ('blob', n(ByteSequence)),
     ]
 
+class AccumulatePreimagesStatusMapEntry(Struct):
+    type_mapping = [
+        ('hash', n(OpaqueHash)),
+        ('status', 'Vec<TimeSlot>')
+    ]
+
 class AccumulateAccountMapData(Struct):
     type_mapping = [
         ('service', n(ServiceInfo)),
         ('storage', 'Vec<AccumulateStorageMapEntry>'),
-        ('preimages', 'Vec<AccumulatePreimagesMapEntry>')
+        ('preimages_blob', 'Vec<AccumulatePreimagesMapEntry>'),
+        ('preimages_status', 'Vec<AccumulatePreimagesStatusMapEntry>')
     ]
 
 class AccumulateAccountMapEntry(Struct):
