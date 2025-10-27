@@ -33,6 +33,7 @@ All host calls have a gas cost of **$10$**, with the following exceptions:
 - [Storage Light](./storage_light): no-safrole, service related work reports, max 1 work item per report.
 - [Preimages](./preimages): no-safrole, preimages related work reports, max 6 work items per report.
 - [Preimages Light](./preimages_light): no-safrole, preimages related work reports, max 1 work item per report.
+- [Fuzzy](./fuzzy): no-safrole, fuzzy service, random fuzzy service profile, max 6 work item per report.
 - [Fuzzy Light](./fuzzy_light): no-safrole, fuzzy service, empty fuzzy service profile, max 1 work item per report.
 
 ## Preimage Expunge Delay
