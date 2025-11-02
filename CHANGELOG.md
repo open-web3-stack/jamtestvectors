@@ -11,6 +11,13 @@
 * Add preimage provision status to the `Account`s structure of
   accumulate `StfState` (see ASN.1 syntax).
 
+### Deviations
+
+* Accumulation statistics for services accumulation are updated
+  according to version 0.7.2. In 0.7.2, service stats need to be
+  updated when any service accumulation logic has been executed.
+  (https://graypaper.fluffylabs.dev/#/ab2cdbd/18e60318e603?v=0.7.2)
+
 ## [0.7.0] - 26-08-2025
 
 ### Changed
