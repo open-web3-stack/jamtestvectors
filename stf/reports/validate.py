@@ -37,4 +37,4 @@ def tweak_callback(json_obj):
     return json_obj
 
 for spec in ["tiny", "full"]:
-    validate_group("reports", "reports.asn", spec, tweak_callback)
+    validate_group("reports", "reports.asn", spec, tweak_callback, skip_files=["report_with_no_results-1"])

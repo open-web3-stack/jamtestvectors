@@ -121,15 +121,18 @@ def validate(schema, json_file, root_type = None, json_tweaks_callback = None):
     # Verify round-trip consistency
     assert json_str.rstrip().lower() == json_str_org.rstrip().lower()
 
-def validate_group(group_name, group_schema, spec_name, json_tweaks_callback=None):
+def validate_group(group_name, group_schema, spec_name, json_tweaks_callback=None, skip_files=None):
     """Validate a group of JSON files against an ASN.1 schema.
-    
+
     Args:
         group_name: Name of the validation group (for display)
         group_schema: ASN.1 schema file name (or None for base schema only)
         spec_name: Specification name ("tiny", "full")
         json_tweaks_callback: Optional callback to modify JSON before validation
+        skip_files: List of filenames to skip during validation (default: empty list)
     """
+    if skip_files is None:
+        skip_files = []
     print(f"\n[Validating {group_name} ({spec_name})]")
     
     # Build schema file list
@@ -140,4 +143,9 @@ def validate_group(group_name, group_schema, spec_name, json_tweaks_callback=Non
     # Compile schema and validate all JSON files
     schema = asn1tools.compile_files(schema_files, codec="jer")
     for json_file in glob.glob(f"{spec_name}/*.json"):
+        basename = os.path.basename(json_file)
+        basename_no_ext = os.path.splitext(basename)[0]
+        if basename_no_ext in skip_files:
+            print(f"* Skipping: {json_file}")
+            continue
         validate(schema, json_file, None, json_tweaks_callback)
