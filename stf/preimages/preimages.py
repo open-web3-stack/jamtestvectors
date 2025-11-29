@@ -10,43 +10,47 @@ from jam_types import (
     U32,
     ByteSequence,
     Errno,
-    ServicesStatistics
+    ServicesStatistics,
+    Vec
 )
 from jam_types import class_name as n
 
-class PreimagesMapEntry(Struct):
+class PreimagesBlobsMapEntry(Struct):
     type_mapping = [
         ('hash', n(OpaqueHash)),
         ('blob', n(ByteSequence)),
     ]
 
-class PreimagesLookupMetaMapKey(Struct):
+class PreimagesRequestsMapKey(Struct):
     type_mapping = [
         ('hash', n(OpaqueHash)),
         ('length', n(U32)),
     ]
 
-class PreimagesLookupMetaMapEntry(Struct):
+class PreimagesRequestsMapEntry(Struct):
     type_mapping = [
-        ('key', n(PreimagesLookupMetaMapKey)),
+        ('key', n(PreimagesRequestsMapKey)),
         ('value', 'Vec<TimeSlot>'),
     ]
 
-class PreimagesAccountMapData(Struct):
+class PreimagesServiceAccount(Struct):
     type_mapping = [
-        ('preimages', 'Vec<PreimagesMapEntry>'),
-        ('lookup_meta', 'Vec<PreimagesLookupMetaMapEntry>'),
+        ('preimage_blobs', 'Vec<PreimagesBlobsMapEntry>'),
+        ('preimage_requests', 'Vec<PreimagesRequestsMapEntry>'),
     ]
 
-class PreimagesAccountMapEntry(Struct):
+class PreimagesServiceAccountMapEntry(Struct):
     type_mapping = [
         ('id', n(ServiceId)),
-        ('data', n(PreimagesAccountMapData))
+        ('data', n(PreimagesServiceAccount))
     ]    
+
+class PreimagesServiceAccountMap(Vec):
+    sub_type = n(PreimagesServiceAccountMapEntry)
 
 class PreimagesState(Struct):
     type_mapping = [
-        ('accounts', 'Vec<PreimagesAccountMapEntry>'),
+        ('accounts', n(PreimagesServiceAccountMap)),
         ('statistics', n(ServicesStatistics)),
     ]
 
