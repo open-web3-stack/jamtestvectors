@@ -17181,7 +17181,7 @@
         "services_statistics": []
     },
     "output": {
-        "err": "other_error"
+        "err": "missing_work_results"
     },
     "post_state": {
         "avail_assignments": [
