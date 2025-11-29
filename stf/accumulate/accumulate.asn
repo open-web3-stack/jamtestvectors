@@ -4,7 +4,7 @@ AccumulateModule DEFINITIONS ::= BEGIN
 
 IMPORTS
     TimeSlot, ServiceId, ServiceInfo, WorkReport, OpaqueHash, ByteSequence,
-    Entropy, ReadyQueue, AccumulatedQueue, Privileges, ServicesStatistics
+    Entropy, ReadyQueue, AccumulatedQueue, Privileges, ServicesStatistics, U32
         FROM JamTypes;
 
 StorageMapEntry ::= SEQUENCE {
@@ -14,35 +14,42 @@ StorageMapEntry ::= SEQUENCE {
     value ByteSequence
 }
 
-PreimagesMapEntry ::= SEQUENCE {
+PreimagesBlobMapEntry ::= SEQUENCE {
     -- Preimage blob full hash
     hash OpaqueHash,
     -- Preimage blob
     blob ByteSequence
 }
 
-PreimagesStatusMapEntry ::= SEQUENCE {
-    -- Preimage blob full hash
+PreimagesRequestsMapKey ::= SEQUENCE {
+    -- Preimage blob hash
     hash OpaqueHash,
+    -- Preimage blob length
+    length U32
+}
+
+PreimagesRequestsMapEntry ::= SEQUENCE {
+    -- Preimage request key
+    key PreimagesRequestsMapKey,
     -- Preimage request status
-    status SEQUENCE (SIZE(0..3)) OF TimeSlot
+    value SEQUENCE (SIZE(0..3)) OF TimeSlot
 }
 
 -- Service account information relevant for this STF.
-Account ::= SEQUENCE {
+ServiceAccount ::= SEQUENCE {
     -- [a_c, a_b, a_g, a_m, a_o, a_i] Service metadata.
     service ServiceInfo,
     -- [a_s] Service storage.
     storage SEQUENCE OF StorageMapEntry,
     -- [a_p] Preimages blobs.
-    preimages-blob SEQUENCE OF PreimagesMapEntry,
-    -- [a_l] Preimages status.
-    preimages-status SEQUENCE OF PreimagesStatusMapEntry
+    preimage-blobs SEQUENCE OF PreimagesBlobMapEntry,
+    -- [a_l] Preimages requests.
+    preimage-requests SEQUENCE OF PreimagesRequestsMapEntry
 }
 
 AccountsMapEntry ::= SEQUENCE {
     id ServiceId,
-    data Account
+    data ServiceAccount
 }
 
 State ::= SEQUENCE {
