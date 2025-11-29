@@ -19,7 +19,7 @@ PreimagesRequestsMapKey ::= SEQUENCE {
 
 PreimagesRequestsMapEntry ::= SEQUENCE {
     key PreimagesRequestsMapKey,
-    value SEQUENCE OF TimeSlot
+    value SEQUENCE (SIZE(0..3)) OF TimeSlot
 }
 
 -- Service account information relevant for this STF.

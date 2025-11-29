@@ -39,7 +39,7 @@ class AccumulatePreimagesRequestsMapKey(Struct):
 class AccumulatePreimagesRequestsMapEntry(Struct):
     type_mapping = [
         ('key', n(AccumulatePreimagesRequestsMapKey)),
-        ('status', 'Vec<TimeSlot>')
+        ('value', 'Vec<TimeSlot>')
     ]
 
 class AccumulateServiceAccount(Struct):

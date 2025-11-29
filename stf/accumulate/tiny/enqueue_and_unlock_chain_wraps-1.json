@@ -331,7 +331,7 @@
                                 "hash": "0x65e537f16b30c01e1325535ab9a18c35c9382bb4dce37c6c3e37c9b76a85c2b7",
                                 "length": 35728
                             },
-                            "status": [
+                            "value": [
                                 0
                             ]
                         }
@@ -665,7 +665,7 @@
                                 "hash": "0x65e537f16b30c01e1325535ab9a18c35c9382bb4dce37c6c3e37c9b76a85c2b7",
                                 "length": 35728
                             },
-                            "status": [
+                            "value": [
                                 0
                             ]
                         }
