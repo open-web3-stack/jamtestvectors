@@ -12,7 +12,9 @@ from jam_types import (
     ServiceInfo,
     ByteSequence,
     Privileges,
-    ServicesStatistics
+    ServicesStatistics,
+    Vec,
+    U32
 )
 from jam_types import class_name as n
 
@@ -22,31 +24,40 @@ class AccumulateStorageMapEntry(Struct):
         ('value', n(ByteSequence)),
     ]
 
-class AccumulatePreimagesMapEntry(Struct):
+class AccumulatePreimagesBlobMapEntry(Struct):
     type_mapping = [
         ('hash', n(OpaqueHash)),
         ('blob', n(ByteSequence)),
     ]
 
-class AccumulatePreimagesStatusMapEntry(Struct):
+class AccumulatePreimagesRequestsMapKey(Struct):
     type_mapping = [
         ('hash', n(OpaqueHash)),
-        ('status', 'Vec<TimeSlot>')
+        ('length', n(U32)),
     ]
 
-class AccumulateAccountMapData(Struct):
+class AccumulatePreimagesRequestsMapEntry(Struct):
+    type_mapping = [
+        ('key', n(AccumulatePreimagesRequestsMapKey)),
+        ('value', 'Vec<TimeSlot>')
+    ]
+
+class AccumulateServiceAccount(Struct):
     type_mapping = [
         ('service', n(ServiceInfo)),
         ('storage', 'Vec<AccumulateStorageMapEntry>'),
-        ('preimages_blob', 'Vec<AccumulatePreimagesMapEntry>'),
-        ('preimages_status', 'Vec<AccumulatePreimagesStatusMapEntry>')
+        ('preimage_blobs', 'Vec<AccumulatePreimagesBlobMapEntry>'),
+        ('preimage_requests', 'Vec<AccumulatePreimagesRequestsMapEntry>')
     ]
 
-class AccumulateAccountMapEntry(Struct):
+class AccumulateServiceAccountMapEntry(Struct):
     type_mapping = [
         ('id', n(ServiceId)),
-        ('data', n(AccumulateAccountMapData))
+        ('data', n(AccumulateServiceAccount))
     ]    
+
+class AccumulateServiceAccountMap(Vec):
+    sub_type = n(AccumulateServiceAccountMapEntry)
 
 class AccumulateState(Struct):
     type_mapping = [
@@ -56,7 +67,7 @@ class AccumulateState(Struct):
         ('accumulated', n(AccumulatedQueue)),
         ('privileges', n(Privileges)),
         ('statistics', n(ServicesStatistics)),
-        ('accounts', 'Vec<AccumulateAccountMapEntry>'),
+        ('accounts', n(AccumulateServiceAccountMap))
     ]  
 
 class AccumulateInput(Struct):

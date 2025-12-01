@@ -7,37 +7,37 @@ IMPORTS
         FROM JamTypes;
 
 
-PreimagesMapEntry ::= SEQUENCE {
+PreimagesBlobMapEntry ::= SEQUENCE {
     hash OpaqueHash,
     blob ByteSequence
 }
 
-LookupMetaMapKey ::= SEQUENCE {
+PreimagesRequestsMapKey ::= SEQUENCE {
     hash OpaqueHash,
     length U32
 }
 
-LookupMetaMapEntry ::= SEQUENCE {
-    key LookupMetaMapKey,
-    value SEQUENCE OF TimeSlot
+PreimagesRequestsMapEntry ::= SEQUENCE {
+    key PreimagesRequestsMapKey,
+    value SEQUENCE (SIZE(0..3)) OF TimeSlot
 }
 
 -- Service account information relevant for this STF.
-Account ::= SEQUENCE {
+ServiceAccount ::= SEQUENCE {
     -- [a_p] Preimages blobs.
-    preimages SEQUENCE OF PreimagesMapEntry,
-    -- [a_l] Preimages lookup metadata.
-    lookup-meta SEQUENCE OF LookupMetaMapEntry
+    preimage-blobs SEQUENCE OF PreimagesBlobMapEntry,
+    -- [a_l] Preimages requests.
+    preimage-requests SEQUENCE OF PreimagesRequestsMapEntry
 }
 
-AccountsMapEntry ::= SEQUENCE {
+ServiceAccountMapEntry ::= SEQUENCE {
     id ServiceId,
-    data Account
+    data ServiceAccount
 }
 
 State ::= SEQUENCE {
 	-- [δ] Relevant services account data. Refer to T(σ) in GP Appendix D.
-    accounts SEQUENCE OF AccountsMapEntry,
+    accounts SEQUENCE OF ServiceAccountMapEntry,
 	-- [π_S] Services statistics.
 	-- Note: Only stats related to preimages STF are updated, in particular:
 	-- provided_count (p.0), provided_size (p.1).

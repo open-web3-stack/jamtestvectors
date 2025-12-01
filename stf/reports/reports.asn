@@ -117,7 +117,8 @@ ErrorCode ::= ENUMERATED {
     bad-signature (21),
     work-report-too-big (22),
     banned-validator (23),
-    lookup-anchor-not-recent (24)
+    lookup-anchor-not-recent (24),
+    missing-work-results (25)
 }
 
 Output ::= CHOICE {
