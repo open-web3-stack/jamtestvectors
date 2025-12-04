@@ -23,7 +23,7 @@ The gas cost for a single instruction is set to **$1$**
 
 All host calls have a gas cost of **$10$**, with the following exceptions:
 - **`transfer`**: Gas cost is set to **$10 + \omega_9$**, as specified in the GP.
-- **`log`**: Gas cost is set to **0**, as defined in [JIP-1](https://hackmd.io/@polkadot/jip1).
+- **`log`**: Gas cost is set to **10**, as defined in [JIP-1](https://github.com/polkadot-fellows/JIPs/blob/main/JIP-1.md).
 
 ## Vectors
 
